@@ -6,10 +6,11 @@ import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
 const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps) => {
+  // try {
   const { userId } = auth();
   const transformation = transformationTypes[type];
 
-  if(!userId) redirect('/sign-in')
+  if(!userId) redirect(`/sign-in`)
 
   const user = await getUserById(userId);
 
@@ -30,6 +31,14 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
       </section>
     </>
   )
+
 }
+// catch (error) {
+  
+//   console.error('Error in AddTransformationTypePage:', error);
+//   // Optionally handle error or redirect to an error page
+//   return null;
+// }
+// };
 
 export default AddTransformationTypePage
